@@ -1,5 +1,7 @@
 package com.example.charting;
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -10,7 +12,8 @@ import java.util.TreeMap;
 import javax.swing.JFrame;  
 
 import org.jfree.chart.ChartFactory;  
-import org.jfree.chart.ChartPanel;  
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.plot.CategoryPlot;
@@ -47,6 +50,13 @@ public class BarChart extends JFrame  {
       
         ChartPanel panel=new ChartPanel(chart);  
         setContentPane(panel);  
+          File barChart = new File( "barChart"+series+".png"); 
+        try {
+          ChartUtilities.saveChartAsPNG( barChart,chart,620,480 );
+        } catch (IOException e) {
+          
+          e.printStackTrace();
+        }
       } 
       public BarChart(String title,TreeMap<String[],Float> treemap,String x_label,String y_label) {
         super(title);  
@@ -74,7 +84,13 @@ public class BarChart extends JFrame  {
       
         ChartPanel panel=new ChartPanel(chart);  
         setContentPane(panel);  
-
+        File barChart = new File( "barChart.png"); 
+        try {
+          ChartUtilities.saveChartAsPNG( barChart,chart,620,480 );
+        } catch (IOException e) {
+          
+          e.printStackTrace();
+        }
       }
       
       private CategoryDataset createDataset(TreeMap<String[],Float> treemap,String series) {  

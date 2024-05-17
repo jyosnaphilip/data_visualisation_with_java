@@ -5,10 +5,14 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.JFrame;  
   
 import org.jfree.chart.ChartFactory;  
-import org.jfree.chart.ChartPanel;  
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
@@ -42,6 +46,13 @@ public class LineChart extends JFrame {
 
         ChartPanel panel = new ChartPanel(chart);  
         setContentPane(panel);  
+        File chartLine = new File( "LineChart.png" ); 
+      try {
+        ChartUtilities.saveChartAsPNG( chartLine , chart ,620,480 );
+      } catch (IOException e) {
+        
+        e.printStackTrace();
+      }
     }
 
     private CategoryDataset createDataset(TreeMap<String[],Float> treemap){

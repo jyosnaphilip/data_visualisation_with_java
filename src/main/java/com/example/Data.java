@@ -27,7 +27,7 @@ import javax.swing.WindowConstants;
 @SuppressWarnings("unused")
 public class Data{
     //find the column count for the output array of a groupby method
-    //if you want an array contianing all indexes where a particular value occurs,
+    //if you want an array conaining all indexes where a particular value occurs,
     // and assuming each value occurs equal no of times.
     //from x, find the indexes where each value of unique array occurs
     static int findColumnCount(ArrayList<String> x,ArrayList<String> unique){
@@ -136,7 +136,6 @@ public class Data{
         for(String i:unique_list){
                 //create array to hold all index values of needed values
             Integer[] array=new Integer[column_count];
-            // treemap.put(i, array);
             array=findAllInStringArrayList(x, i);
             Float[] float_y=convertArrListFloatToFloatArr(y);
             if(aggregate.equals("sum")){
@@ -174,7 +173,6 @@ public class Data{
         for(String i:unique_list_x1){
                 //create array to hold all index values of needed values
             Integer[] array_x1=findAllInStringArrayList(x1, i);
-            // treemap.put(i, array);
             treemap_x1.put(i,array_x1);
                 //keys should be unique so it will overwrite
             
@@ -182,7 +180,6 @@ public class Data{
         for(String i:unique_list_x2){
                 //create array to hold all index values of needed values
             Integer[] array_x2=new Integer[column_count_x2];
-            // treemap.put(i, array);
             array_x2=findAllInStringArrayList(x2, i);
             treemap_x2.put(i,array_x2);
                 
@@ -217,7 +214,6 @@ public class Data{
             
                 //create array to hold all index values of needed values
             Integer[] array_group1=findAllInStringArrayList(group1, i);
-            // treemap.put(i, array);
             treemap_group1.put(i,array_group1);
                 //keys should be unique or else it will overwrite
             
@@ -225,7 +221,6 @@ public class Data{
         for(String i:unique_list_group2){
                 //create array to hold all index values of needed values
             Integer[] array_group2=new Integer[column_count_group2];
-            // treemap.put(i, array);
             array_group2=findAllInStringArrayList(group2, i);
             treemap_group2.put(i,array_group2);
                 
@@ -236,7 +231,6 @@ public class Data{
             
             //create array to hold all index values of needed values
             Integer[] array_group3=new Integer[column_count_group3];
-            // treemap.put(i, array);
             array_group3=findAllInStringArrayList(group3, i);
             treemap_group3.put(i,array_group3);
             
@@ -245,7 +239,7 @@ public class Data{
         //uses the array method compare to sort the keys
         for(String j:unique_list_group2){
             Integer[] j_arr=treemap_group2.get(j);
-            // Float[] pos=new Float[unique_list_group2.size()]; //create a list with size equal to no of states
+           
             //this list will have the capacities, we order this list find the top10 and get it from the treemap created for a new treemap
             int count=0;
             for(String k:subset){
@@ -265,39 +259,17 @@ public class Data{
                         else{
                             String[] key={j,k,m};
                             treemap.put(key,sum);
-                            // pos[count]=sum;
+
                             count+=1;
                         }
                         
                     }
-                    
-                    
-                    
-                    // System.out.println(count);
+
                 }
-            // for(Float po:pos){
-            // System.out.print(po);
-            // }
+
                 Set<Map.Entry<String[], Float> > entries= treemap.entrySet();
                 Iterator<Map.Entry<String[], Float> > iterator = entries.iterator();
-                // Arrays.sort(pos);
-                // for(Map.Entry<String[],Float> entry:entries){
-                //     boolean flag=false;
-                //     for(int i=pos.length-1;i>=pos.length-10;i--){
-                //         if(pos[i]!=Float.parseFloat("0")){
-                //             if(entry.getValue()==pos[i]){
-                //                 flag=true;
-                //                 break;
-                //             }
-                //         }
-                //         else{
-                //             break;
-                //         }
-                //     }
-                //     if(flag==false){
-                //         treemap.remove(entry.getKey());
-                //     }
-                // }   
+  
             }
         }    
         return treemap;
@@ -315,37 +287,13 @@ public class Data{
             lineChart.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  
             lineChart.setVisible(true);  
         });  
-        
-
-        
-
-            
-        
-        
-        // int step=0;
-        // for(Integer[] k:data_groupedBy_class){
-        //     System.out.println("NEW ROW : NOTICE THIS"+step);
-        //     for(int l:k){
-        //         // if(l!= null)
-        //             System.out.println(l);
-        //     }
-        //     step+=1;
-        // }
-        // Set<String> keys= data_groupedBy_year.keySet();
-        // for(String i:keys){
-        //     Integer[] list=data_groupedBy_year.get(i);
-        //     for(Integer arr_el:list){
-        //         System.out.println(arr_el);
-                
-        //     }
-        // }
          
     }
    
     public static void BarChartforTop10(ArrayList<String> group1,ArrayList<String> group2,ArrayList<String> group3,ArrayList<Float> y_val,String series,String xlabel,String ylabel){
         TreeMap<String[],Float> data_groupedBy_year_state=groupbyMultiple(group1,group2,group3, "sum",y_val,series);
         SwingUtilities.invokeLater(()->{
-            BarChart barChart=new BarChart("Comparison of State-Wise Capacity of "+series,data_groupedBy_year_state,series,xlabel,ylabel);  
+            BarChart barChart=new BarChart("State-Wise Comparison of Grid Connected Energy Capacity- "+series,data_groupedBy_year_state,series,xlabel,ylabel);  
             barChart.setSize(800,800);  
             barChart.setLocationRelativeTo(null);  
             barChart.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  
@@ -367,7 +315,7 @@ public class Data{
     public static void LowestStates(ArrayList<String> group1,ArrayList<Float> y_val,ArrayList<String> group2,String x_label,String y_label){
         TreeMap<String[],Float> data_groupedBy_year_state=groupby(group2,group1, "sum",y_val);
         SwingUtilities.invokeLater(()->{
-        BarChart barChart=new BarChart("Comparison of State-Wise Capacity of ",data_groupedBy_year_state,x_label,y_label);  
+        BarChart barChart=new BarChart("States/UTs with Lowest Total Grid Connected Renewable energy capacity ",data_groupedBy_year_state,x_label,y_label);  
         barChart.setSize(800,800);  
         barChart.setLocationRelativeTo(null);  
         barChart.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  

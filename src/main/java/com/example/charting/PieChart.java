@@ -1,8 +1,6 @@
 package com.example.charting;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.io.File;
 import java.io.IOException;
@@ -39,7 +37,7 @@ public class PieChart extends JFrame{
   
     // Create chart  
     JFreeChart chart1 = ChartFactory.createPieChart(  
-        title+series1,  
+        title+" "+series1,  
         dataset1,  
         true,   
         true,  
@@ -71,7 +69,7 @@ public class PieChart extends JFrame{
       panel.add(new ChartPanel(chart1),BorderLayout.CENTER);
       
       JFreeChart chart2 = ChartFactory.createPieChart(  
-        title+series2,  
+        title+" "+series2,  
         dataset2,  
         true,   
         true,  
