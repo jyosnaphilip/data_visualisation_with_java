@@ -29,7 +29,7 @@ public class PieChart extends JFrame{
   public PieChart(String title,String series1,String series2, TreeMap<String[],Float> treemap) {  
     super(title);  
     JPanel panel=new JPanel(new GridLayout(1,1));
-    // frame.setLayout( new FlowLayout() );
+
     // Create dataset  
     PieDataset dataset1 = createDataset(treemap,series1);
     PieDataset dataset2 = createDataset(treemap,series2);  
@@ -51,10 +51,6 @@ public class PieChart extends JFrame{
         plot1.setShadowPaint(null);
         
 
-        // plot.setSectionPaint(new Color(120, 0, 120));
-        // or do this, if you are using an older version of JFreeChart:
-        //plot.setSectionPaint(1, Color.black);
-        //plot.setSectionPaint(3, new Color(120, 0, 120));
     //Format Label  
     PieSectionLabelGenerator labelGenerator = new StandardPieSectionLabelGenerator(); 
           

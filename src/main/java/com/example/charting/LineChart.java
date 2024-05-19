@@ -35,7 +35,7 @@ public class LineChart extends JFrame {
 
         plot.setRangeGridlinePaint(Color.WHITE);
         plot.setDomainGridlinesVisible(false);
-        //todo:change the font and thickness of lines
+
         renderer.setBaseStroke(new BasicStroke(5));
         renderer.setSeriesPaint(0, Color.ORANGE);
         renderer.setSeriesPaint(1, Color.RED);
